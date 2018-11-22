@@ -57,16 +57,14 @@ cmake ..
 **用法**
 
 ```bash
-App_SecretCode -s [in file name] (-t [out file name])? -k [\w{8}]
+App_SecretCode -s [in file name] (-t [out file name])? (-k [\w{8}])?
 ```
 
 其中
 
 - `-s`：源文件，后边写文件路径 
-
 - `-t`：输出文件，后边写文件路径，**可以不填写，默认为源文件名**
-
-- `-k`：密码，为8位字符
+- `-k`：密码，为8位字符，**可以不填写，运行程序时会询问密码，此时输入有隐藏操作**
 
 **示例**
 
@@ -95,3 +93,4 @@ NUmbtDoQDSk=
 4bpFZaCQR1I=
 
 ```
+
