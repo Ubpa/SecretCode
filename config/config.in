@@ -1,0 +1,40 @@
+#----------------------------------------------
+# Ubpa
+#----------------------------------------------
+# 这是配置文件，格式描述详见 Syntax
+#----------------------------------------------
+# [ Syntax ]
+# string strT = "(string)";
+# string intT = "(int)";
+# string floatT = "(float)";
+# string hexT = "(hex)";
+# string binT = "(bin)";
+#  
+# string blank = "(?:[ \\t]*)";
+# string vName = "([_a-zA-Z][_0-9a-zA-Z]*)";
+# 
+# string strVal = "(?:\"([^\"]*)\")";
+# string strExp = "(?:" + strT + blank + vName + blank + "=" + blank + strVal + blank + ";)";
+# 
+# string intVal = "([1-9][0-9]*|0)";
+# string intExp = "(?:" + intT + blank + vName + blank + "=" + blank + intVal + blank + ";)";
+# 
+# string binVal = "([01]{1,32})";
+# string binExp = "(?:" + binT + blank + vName + blank + "=" + blank + binVal + blank + ";)";
+# 
+# string hexVal = "([0-9A-F]{1,8})";
+# string hexExp = "(?:" + hexT + blank + vName + blank + "=" + blank + hexVal + blank + ";)";
+# 
+# string floatVal = "((?:[1-9][0-9]*|0)(?:\\.[0-9]*)?)";
+# string floatExp = "(?:" + floatT + blank + vName + blank + "=" + blank + floatVal + blank + ";)";
+# 
+# string allExp = "(?:" + strExp + "|" + intExp + "|" + floatExp + "|" + hexExp + "|" + binExp + ")";
+# string note = "(?:#.*)";
+# string line = "(?:" + blank + allExp + "?" + blank + note + "?" + "\n?)";
+#----------------------------------------------
+
+# 根目录
+string RootPath = "${CMAKE_SOURCE_DIR}";
+
+# Example_01
+hex Example_01_Code = FFDDAABB;
