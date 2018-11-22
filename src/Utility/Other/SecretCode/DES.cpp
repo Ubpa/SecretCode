@@ -9,12 +9,12 @@ DES::DES(const char key[8])
 	//subKeys(generateKeys(this->key)) { }
 	subKeys(generateKeys(charToBitset(key))) { }
 
-const bitset<64> DES::Encrypt(const char plainText[8]) {
+const bitset<64> DES::Encrypt(const char plainText[8]) const{
 	bitset<64> cipher = encrypt(charToBitset(plainText), subKeys);
 	return cipher;
 }
 
-const string DES::Decrypt(const bitset<64> & cipher) {
+const string DES::Decrypt(const bitset<64> & cipher) const{
 	bitset<64> plain = decrypt(cipher, subKeys);
 	return bitsetToStr(plain);
 }

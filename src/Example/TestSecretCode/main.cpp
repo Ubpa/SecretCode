@@ -26,7 +26,7 @@ int main() {
 	SecretCode secretCode(key.c_str());
 	string cipher = secretCode.Encrypt(text);
 	cout << "cipher:\n" << cipher << endl;
-	string plain = secretCode.Decode(cipher);
+	string plain = secretCode.Decrypt(cipher);
 	cout << "plain:\n" << plain << endl;
 	return 0;
 }

@@ -8,14 +8,18 @@
 
 ```c
 // 加密
-code --> lines
-line --DES + key--> cipher bytes
-cipher bytes --BASE64--> cipher Text
+code --> line_0, line_1, ...;
+defautltHeader --DES + defaultKey--> cipherDefaultHeader
+userHeader --DES + userKey--> cipherUserHeader
+line_i --DES + userKey--> cipherBytes_i
+cipherDefaultHeader + userDefaultHeader + cipherBytes_All --BASE64--> cipher Text
 
 // 解密
-cipher Text --BASE64--> cipher bytes
-cipher bytes --DES + key--> line
-lines --> code
+cipher Text --BASE64--> cipherDefaultHeader + cipherUserHeader + cipherBytes_All
+cipherDefaultHeader --DES + defaultKey--> defautltHeader, wrong -> format error
+cipherUserHeader --DES + userKey--> userHeader, wrong -> key wrong
+cipherBytes_i --DES + userKey--> line_i
+line_0, line_1, ... --> code
 ```
 
 ## 2. 编译代码
@@ -29,7 +33,7 @@ lines --> code
 ### 2.2 下载代码
 
 ```bash
-git clone https://github.com/Ubpa/RayTracingToy
+git clone https://github.com/Ubpa/SecretCode
 ```
 
 ### 2.3 编译
@@ -53,22 +57,23 @@ cmake ..
 **用法**
 
 ```bash
-App_SecretCode -m [e/d] -s [in file name] -t [out file name] -k [\w{8}]
+App_SecretCode -s [in file name] (-t [out file name])? -k [\w{8}]
 ```
 
 其中
 
-- `-m`：模式，`e`指加密，`d`指解密
-
 - `-s`：源文件，后边写文件路径 
 
-- `-t`：输出文件，后边写文件路径
+- `-t`：输出文件，后边写文件路径，**可以不填写，默认为源文件名**
 
 - `-k`：密码，为8位字符
 
 **示例**
 
-```
+```bash
+# 加密/解密 hello.txt, 输出覆盖 hello.txt
+App_SecretCode -m e -s hello.txt -k password
+# 加密/解密 hello.txt, 输出到 out.txt
 App_SecretCode -m e -s hello.txt -t out.txt -k password
 ```
 
@@ -84,6 +89,9 @@ master
 **out.txt**
 
 ```
++/ut9cSQOn5pIEmmvMN6/m0bAFURCxFYyu1sfVTJ6e8=
++/ut9cSQOn5pIEmmvMN6/msKZ3ew7OrcoaqSTC5T18g=
 NUmbtDoQDSk=
 4bpFZaCQR1I=
+
 ```
