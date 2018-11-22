@@ -9,12 +9,12 @@
 ```c
 // 加密
 code --> lines
-line --DES--> cipher bytes
+line --DES + key--> cipher bytes
 cipher bytes --BASE64--> cipher Text
 
 // 解密
 cipher Text --BASE64--> cipher bytes
-cipher bytes --DES--> line
+cipher bytes --DES + key--> line
 lines --> code
 ```
 
@@ -52,7 +52,7 @@ cmake ..
 
 **用法**
 
-```
+```bash
 App_SecretCode -m [e/d] -s [in file name] -t [out file name] -k [\w{8}]
 ```
 
@@ -84,6 +84,6 @@ master
 **out.txt**
 
 ```
-u16xzmJIovw=
-BtbgCv2gP9o=
+NUmbtDoQDSk=
+4bpFZaCQR1I=
 ```

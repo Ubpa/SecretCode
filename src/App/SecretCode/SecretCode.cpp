@@ -20,31 +20,31 @@ int main(int argc, char ** argv) {
 		|| key.size() != 8) {
 		printf("ERROR: arg error\n"
 			"INFO: [ USAGE ]\n"
-			"      App_SecretCode -m [e/d] -s [in file name] -t [out file name] -k [\w{8}]\n");
+			"      App_SecretCode -m [e/d] -s [in file name] -t [out file name] -k [\\w{8}]\n"
+			"INFO: eg. App_SecretCode -m e -s hello.txt -t out.txt -k password\n");
 		return 1;
 	}
+
+	SecretCode secretCode(key.c_str());
 
 	File inFile(inFName, File::READ);
 	if (!inFile.IsValid()) {
 		printf("ERROR: in file open fail\n");
 		return 1;
 	}
+	string srcText = inFile.ReadAll();
+
+	string outText;
+	if (mode == "e")
+		outText = secretCode.Encrypt(srcText);
+	else
+		outText = secretCode.Decode(srcText);
 
 	File outFile(outFName, File::WRITE);
 	if (!outFile.IsValid()) {
 		printf("ERROR: out file open fail\n");
 		return 1;
 	}
-
-	string srcText = inFile.ReadAll();
-	string outText;
-
-	SecretCode secretCode(key.c_str());
-	if (mode == "e")
-		outText = secretCode.Encrypt(srcText);
-	else
-		outText = secretCode.Decode(srcText);
-
 	outFile.Printf("%s", outText.c_str());
 
 	return 0;

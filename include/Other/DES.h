@@ -13,7 +13,7 @@ namespace CppUtility {
 			const std::bitset<64> Encrypt(const char plainText[8]);
 			const std::string Decrypt(const std::bitset<64> & cipher);
 		private:
-			std::bitset<64> key;
+			//std::bitset<64> key;
 			std::vector<std::bitset<48>> subKeys;
 		};
 	}

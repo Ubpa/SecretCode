@@ -4,8 +4,6 @@
 #include <Other/Base64.h>
 #include <Other/DES.h>
 
-#include <string>
-
 namespace CppUtility {
 	namespace Other {
 		class SecretCode {
