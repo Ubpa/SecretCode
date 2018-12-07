@@ -22,21 +22,27 @@ cipherBytes_i --DES + userKey--> line_i
 line_0, line_1, ... --> code
 ```
 
-## 2. 编译代码
+## 2. Todo
+- [ ] 双重密码（用备用密码加密文件密码，然后再以此解码）
+- [ ] 允许程序内部输入文件名
+- [ ] 批量加密/解密文件夹内文件
+- [ ] 文件名以"\_"开头则为明文，加入到gitignore中
 
-### 2.1 需求软件
+## 3. 编译代码
+
+### 3.1 需求软件
 
 - Visual Studio 2017
 - Git
 - CMake（版本2.8以上）
 
-### 2.2 下载代码
+### 3.2 下载代码
 
 ```bash
 git clone https://github.com/Ubpa/SecretCode
 ```
 
-### 2.3 编译
+### 3.3 编译
 
 1. 建立工程
 
@@ -73,9 +79,9 @@ App_SecretCode -s [in file name] (-t [out file name])? (-k [\w{8}])?
 App_SecretCode -m e -s hello.txt -k password
 # 加密/解密 hello.txt, 输出到 out.txt
 App_SecretCode -m e -s hello.txt -t out.txt -k password
+# 加密/解密 hello.txt, 运行程序后再输入密码
+App_SecretCode -m e -s hello.txt
 ```
-
-`hello.txt` 要放在 `App_SecretCode.exe` 的同目录下
 
 **hello.txt**
 
